@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Pattern
+
 
 # Create your views here.
 
-def index(request):
-    response = HttpResponse("Patterns will come")
-    return response
+class PatternList(generic.ListView):
+    model = Pattern
+    queryset = Pattern.objects.all()
+    template_name = "patterns_list.html"
